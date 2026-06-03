@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clear Plastic Bottle Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <span class="logo">🧴</span>
+      <div>
+        <h1>Clear Plastic Bottle Detection</h1>
+        <p class="subtitle">Canny Edge Detection + Watershed Segmentation</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Main ───────────────────────────────────────────────────── -->
+  <main>
+
+    <!-- Upload card -->
+    <section class="card upload-card" id="uploadCard">
+      <h2>Upload Gambar</h2>
+      <p class="hint">Format yang didukung: JPG, PNG, BMP · Maks. 16 MB</p>
+
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">📂</div>
+        <p>Seret & lepas gambar di sini, atau</p>
+        <button class="btn-primary" id="browseBtn" type="button">Pilih File</button>
+        <input type="file" id="fileInput" accept="image/*" hidden />
+      </div>
+
+      <!-- Preview -->
+      <div class="preview-wrap" id="previewWrap" hidden>
+        <img id="previewImg" src="" alt="Preview" />
+        <div class="preview-info" id="previewInfo"></div>
+        <div class="btn-row">
+          <button class="btn-ghost" id="resetBtn" type="button">↩ Ganti Gambar</button>
+          <button class="btn-primary" id="processBtn" type="button">▶ Proses Sekarang</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loading -->
+    <div class="loader" id="loader" hidden>
+      <div class="spinner"></div>
+      <p>Sedang memproses gambar…</p>
+    </div>
+
+    <!-- Results -->
+    <section class="card result-card" id="resultCard" hidden>
+      <h2>Hasil Segmentasi</h2>
+
+      <div class="compare-grid">
+        <div class="compare-item">
+          <span class="compare-label">Input Asli</span>
+          <img id="imgOriginal" src="" alt="Original" />
+        </div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-item">
+          <span class="compare-label">Output Segmentasi</span>
+          <img id="imgResult" src="" alt="Result" />
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="legend">
+        <span class="legend-dot cyan"></span> Canny Edge
+        <span class="legend-dot red"></span> Watershed Boundary
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid" id="statsGrid"></div>
+
+      <div class="btn-row center">
+        <button class="btn-ghost" id="newBtn" type="button">↩ Upload Gambar Baru</button>
+        <a class="btn-primary" id="downloadBtn" href="#" download="hasil_segmentasi.png">
+          ⬇ Download Hasil
+        </a>
+      </div>
+    </section>
+
+    <!-- Error -->
+    <div class="error-box" id="errorBox" hidden>
+      <span id="errorMsg"></span>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer>
+    <p>Digital Image Processing · Ivone Liwang · 1076012527103</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
